@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { SimpleGrid, Center, Box } from "@chakra-ui/react";
+import { SimpleGrid, Center, Box, Flex, useMediaQuery } from "@chakra-ui/react";
 import { TripInfo } from "../../types/types";
 import { TripCard } from "./trip-card.component";
 import { TripCardContent } from "./trip-card-content.component";
@@ -11,14 +11,13 @@ import { Rating } from "./rating.component";
 
 export type TripCardsGridProps = PropsWithChildren<{ tripInfos: TripInfo[] }>;
 export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
+  const [isSmallerThan400] = useMediaQuery("(max-width: 450px)");
+
+  const Wrapper = isSmallerThan400 ? Center : Box;
+
   return (
-    <Center backgroundColor="gray.200">
-      <SimpleGrid
-        spacing={4}
-        py={["5", "50"]}
-        px={["0", "200"]}
-        minChildWidth="300px"
-      >
+    <Wrapper backgroundColor="gray.200" py={["5", "50"]} px={["0", "200"]}>
+      <SimpleGrid spacing={4} minChildWidth="300px">
         {tripInfos.length &&
           tripInfos.map((tripInfo) => {
             return (
@@ -39,6 +38,6 @@ export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
             );
           })}
       </SimpleGrid>
-    </Center>
+    </Wrapper>
   );
 };

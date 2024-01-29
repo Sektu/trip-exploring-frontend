@@ -21,6 +21,7 @@ import {
   CardFooter,
   Divider,
   Center,
+  Flex,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import {
@@ -128,7 +129,7 @@ export const TripDetails = () => {
             {trip.description}
           </Text>
         </Box>
-        <Center>
+        <Flex justifyContent="center" width="100%">
           <Card boxSize="xs" maxH="17rem">
             <CardHeader>
               <Heading size="md">{trip.days} days</Heading>
@@ -160,7 +161,7 @@ export const TripDetails = () => {
               </Stack>
             </CardBody>
           </Card>
-        </Center>
+        </Flex>
       </Grid>
     </Stack>
   );
