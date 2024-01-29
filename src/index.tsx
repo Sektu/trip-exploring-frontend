@@ -4,7 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import { Trips } from "./App";
+import { Trips } from "./components/Trips";
 import { TripDetails } from "./components/TripDetails";
 import { RecoilRoot } from "recoil";
 

@@ -33,6 +33,9 @@ import { Trip } from "../types/types";
 import { useRecoilState } from "recoil";
 import { tripDetailsAtom } from "../atoms/trip-details.atom";
 
+const BASE_URL =
+  "https://trips-exploring-backend.netlify.app/.netlify/functions";
+
 export const TripDetails = () => {
   const [tripDetails, setTripDetails] = useRecoilState(tripDetailsAtom);
   const [trip, setTrip] = useState<Trip | null>(null);
@@ -41,16 +44,10 @@ export const TripDetails = () => {
   const navigate = useNavigate();
 
   const fetchTripDetails = async () => {
-    console.log("fetchTripDetails tripId", tripId);
-    console.log(tripDetails);
-
     if (tripId && tripDetails[tripId]) {
-      console.log("no fetch");
-
       setTrip(tripDetails[tripId]);
     } else if (tripId) {
-      console.log("run fetch");
-      const response = await fetch(`http://localhost:3001/trip/${id}`);
+      const response = await fetch(`${BASE_URL}/trip-details?id=${tripId}`);
       const tripResponse = (await response.json()) as Trip;
       setTripDetails({ ...tripDetails, [tripId]: tripResponse });
       setTrip(tripResponse);

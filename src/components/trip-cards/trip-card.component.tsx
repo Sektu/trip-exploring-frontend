@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from "react";
-import "./App.css";
 import { Box } from "@chakra-ui/react";
 import { TripInfo } from "../../types/types";
 

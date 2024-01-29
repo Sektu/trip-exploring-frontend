@@ -6,14 +6,16 @@ import { useRecoilState } from "recoil";
 import { TripCardsGrid } from "./trip-cards/trip-cards-grid.component";
 
 const PAGE_SIZE = 8;
+const BASE_URL =
+  "https://trips-exploring-backend.netlify.app/.netlify/functions";
 
 export const Trips = () => {
   const [state, setState] = useRecoilState(tripInfosAtom);
 
   const fetchTrips = async () => {
-    const response = await fetch(
-      `http://localhost:3001/trips?page=${state.currentPage}&pageSize=${PAGE_SIZE}`
-    );
+    const tripsUrl = `/trips?page=${state.currentPage}&pageSize=${PAGE_SIZE}`;
+    const response = await fetch(`${BASE_URL}${tripsUrl}`);
+
     const { totalPages, trips } = (await response.json()) as TripsResponse;
 
     setState({
