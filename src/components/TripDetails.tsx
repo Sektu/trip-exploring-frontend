@@ -20,6 +20,7 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Center,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 import {
@@ -73,10 +74,10 @@ export const TripDetails = () => {
   ];
 
   return (
-    <Stack py="2" px="12" backgroundColor="gray.200">
+    <Stack py="2" px={["4", "12"]} backgroundColor="gray.200">
       <Link
-        py="4"
-        paddingBottom="10"
+        py={["1", "4"]}
+        paddingBottom={["2", "10"]}
         textDecoration={"underline"}
         fontSize="xs"
         fontWeight={700}
@@ -93,12 +94,16 @@ export const TripDetails = () => {
       <Text fontSize="xs" color="gray.600" fontWeight={500}>
         {trip.subtitle}
       </Text>
-      <Grid templateColumns="2fr 1fr" gap="20" py="8">
+      <Grid
+        templateColumns={["1fr", "2fr 1fr"]}
+        gap={["2", "20"]}
+        py={["2", "8"]}
+      >
         <Box>
-          <Box paddingBottom="4">
+          <Box paddingBottom={["1", "4"]}>
             <Image
               width="100%"
-              borderRadius="2xl"
+              borderRadius={["xs", "2xl"]}
               src={trip.photoUrl}
               alt={trip.title}
             />
@@ -106,7 +111,7 @@ export const TripDetails = () => {
           <Heading py="4" fontSize="lg" letterSpacing="wide" color="gray.600">
             Overview
           </Heading>
-          <Grid templateColumns="1fr 1fr" gap="10" py="2">
+          <Grid templateColumns="1fr 1fr" gap={["1", "10"]} py="2">
             {trip.advantages.map((a, i) => (
               <HStack alignItems="start" gap="2">
                 <Box>{advantagesIcons[i]}</Box>
@@ -119,41 +124,43 @@ export const TripDetails = () => {
               </HStack>
             ))}
           </Grid>
-          <Text py="10" color="gray.800">
+          <Text py={["2", "10"]} color="gray.800">
             {trip.description}
           </Text>
         </Box>
-        <Card boxSize="xs" maxH="17rem">
-          <CardHeader>
-            <Heading size="md">{trip.days} days</Heading>
-            <Text color="gray.600">
-              Emmisions:{" "}
-              {trip.co2kilograms < 1000
-                ? `${trip.co2kilograms.toFixed(0)} kg`
-                : `${(trip.co2kilograms / 1000).toFixed(1)} t`}{" "}
-              CO<sub>2</sub>e
-            </Text>
-          </CardHeader>
-          <Box px="4">
-            <Divider />
-          </Box>
-          <CardBody>
-            <Stack>
-              <Text color="gray.600" fontWeight={600}>
-                Countries included:
+        <Center>
+          <Card boxSize="xs" maxH="17rem">
+            <CardHeader>
+              <Heading size="md">{trip.days} days</Heading>
+              <Text color="gray.600">
+                Emmisions:{" "}
+                {trip.co2kilograms < 1000
+                  ? `${trip.co2kilograms.toFixed(0)} kg`
+                  : `${(trip.co2kilograms / 1000).toFixed(1)} t`}{" "}
+                CO<sub>2</sub>e
               </Text>
-              <Grid templateColumns={"1fr 1fr"}>
-                {trip.countries.map((c) => (
-                  <UnorderedList key={c}>
-                    <ListItem color="gray.600" fontWeight={400}>
-                      {c}
-                    </ListItem>
-                  </UnorderedList>
-                ))}
-              </Grid>
-            </Stack>
-          </CardBody>
-        </Card>
+            </CardHeader>
+            <Box px="4">
+              <Divider />
+            </Box>
+            <CardBody>
+              <Stack>
+                <Text color="gray.600" fontWeight={600}>
+                  Countries included:
+                </Text>
+                <Grid templateColumns={"1fr 1fr"}>
+                  {trip.countries.map((c) => (
+                    <UnorderedList key={c}>
+                      <ListItem color="gray.600" fontWeight={400}>
+                        {c}
+                      </ListItem>
+                    </UnorderedList>
+                  ))}
+                </Grid>
+              </Stack>
+            </CardBody>
+          </Card>
+        </Center>
       </Grid>
     </Stack>
   );
