@@ -8,6 +8,7 @@ import { TripCardFooter } from "./trip-card-footer.component";
 import { LearnMoreButton } from "./learn-more-button.component";
 import { Emissions } from "./emissions.component";
 import { Rating } from "./rating.component";
+import { TripCardsLoader } from "./trip-cards-loader.component";
 
 export type TripCardsGridProps = PropsWithChildren<{ tripInfos: TripInfo[] }>;
 export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
@@ -18,7 +19,7 @@ export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
   return (
     <Wrapper backgroundColor="gray.200" py={["5", "50"]} px={["0", "200"]}>
       <SimpleGrid spacing={4} minChildWidth="300px">
-        {tripInfos.length &&
+        {tripInfos.length > 0 ? (
           tripInfos.map((tripInfo) => {
             return (
               <TripCard
@@ -36,7 +37,10 @@ export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
                 </TripCardContent>
               </TripCard>
             );
-          })}
+          })
+        ) : (
+          <TripCardsLoader />
+        )}
       </SimpleGrid>
     </Wrapper>
   );
