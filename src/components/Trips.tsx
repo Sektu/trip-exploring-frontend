@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { TripsResponse } from "../types/types";
 import { tripInfosAtom } from "../atoms/trip-infos.atom";
 import { useRecoilState } from "recoil";
 import { TripCardsGrid } from "./trip-cards/trip-cards-grid.component";
+import { useMediaQuery } from "@chakra-ui/react";
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE_HD = 12;
 const BASE_URL =
   "https://trips-exploring-backend.netlify.app/.netlify/functions";
 
@@ -13,7 +14,7 @@ export const Trips = () => {
   const [state, setState] = useRecoilState(tripInfosAtom);
 
   const fetchTrips = async () => {
-    const tripsUrl = `/trips?page=${state.currentPage}&pageSize=${PAGE_SIZE}`;
+    const tripsUrl = `/trips?page=${state.currentPage}&pageSize=${PAGE_SIZE_HD}`;
     const response = await fetch(`${BASE_URL}${tripsUrl}`);
 
     const { totalPages, trips } = (await response.json()) as TripsResponse;

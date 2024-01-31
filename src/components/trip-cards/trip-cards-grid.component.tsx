@@ -17,7 +17,11 @@ export const TripCardsGrid = ({ tripInfos }: TripCardsGridProps) => {
   const Wrapper = isSmallerThan400 ? Center : Box;
 
   return (
-    <Wrapper backgroundColor="gray.200" py={["5", "50"]} px={["0", "200"]}>
+    <Wrapper
+      backgroundColor="gray.200"
+      py={["10"]}
+      px={{ base: "4rem", xl: "10rem", "2xl": "16rem" }}
+    >
       <SimpleGrid spacing={4} minChildWidth="300px">
         {tripInfos.length > 0 ? (
           tripInfos.map((tripInfo) => {
